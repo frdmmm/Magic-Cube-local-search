@@ -151,6 +151,7 @@ vector<int> simulated_annealing(vector<int> state, double initial_temp, double c
         } else {
             double acceptance_prob = exp((new_energy - current_energy) / current_temp);
             if ((double)rand() / RAND_MAX < acceptance_prob) {
+            // if (acceptance_prob < 0.3){
                 current_state = new_state;
             }
         }
@@ -242,7 +243,7 @@ int main() {
     iota(initial_state.begin(), initial_state.end(), 1);
     shuffle(initial_state.begin(), initial_state.end(), gen);
 
-    vector<int> sa_solution = simulated_annealing(initial_state, 100000.0, 0.09, 1000000);
+    vector<int> sa_solution = simulated_annealing(initial_state, 100000.0, 0.99, 100000);
     cout << "SA Solution: ";
     for (int num : sa_solution) {
         cout << num << " ";
